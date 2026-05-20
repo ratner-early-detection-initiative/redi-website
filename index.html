@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>REDI — Ratner Early Detection Initiative</title>
+
+<style>
+@font-face { font-family:"Neue Haas Grotesk Display"; src:url("assets/fonts/NeueHaasGrotDisp-55Roman-Trial.otf") format("opentype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Neue Haas Grotesk Display"; src:url("assets/fonts/NeueHaasGrotDisp-75Bold-Trial.otf") format("opentype"); font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family:"TT Rationalist"; src:url("assets/fonts/TT_Rationalist_Trial_Normal.ttf") format("truetype"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"TT Rationalist"; src:url("assets/fonts/TT_Rationalist_Trial_Bold.ttf") format("truetype"); font-weight:700; font-style:normal; font-display:swap; }
+
+:root{
+  --red:#FF0037; --red-2:#FF0013; --black:#000; --white:#fff;
+  --n01:#CED7D7; --n02:#E9ECEC; --n03:#E3EBEB;
+  --serif:"TT Rationalist", Georgia, serif;
+  --sans:"Neue Haas Grotesk Display", Helvetica, Arial, sans-serif;
+  --ease:cubic-bezier(.2,.6,.2,1);
+  --gutter:60px;
+}
+@media (max-width:1024px){ :root{ --gutter:20px; } }
+@media (max-width:480px){  :root{ --gutter:10px; } }
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--white); color:var(--black);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit; text-decoration:none}
+button{font:inherit; color:inherit}
+ul{list-style:none; margin:0; padding:0}
+
+.page{display:none}
+.page.is-active{display:block}
+
+/* ---- Type ---- */
+.t-h1{font-family:var(--serif); font-weight:700; font-size:95px; line-height:1; letter-spacing:-.02em}
+.t-h2{font-family:var(--serif); font-weight:400; font-size:44px; line-height:1.1; letter-spacing:-.02em}
+.t-rm{font-family:var(--serif); font-weight:700; font-size:19px; line-height:.97; letter-spacing:-.01em}
+.t-sub1{font-family:var(--sans); font-weight:700; font-size:41px; line-height:.96}
+.t-sub2{font-family:var(--sans); font-weight:700; font-size:30px; line-height:1}
+.t-p1{font-family:var(--sans); font-weight:400; font-size:24px; line-height:1.15; letter-spacing:.01em}
+.t-press{font-family:var(--sans); font-weight:700; font-size:14px; line-height:1.15; letter-spacing:.03em; text-transform:uppercase}
+.t-cta{font-family:var(--sans); font-weight:700; font-size:14px; line-height:.96; letter-spacing:.03em; text-transform:uppercase}
+.t-label{font-family:var(--sans); font-weight:400; font-size:12px; line-height:1; letter-spacing:.094em; text-transform:uppercase}
+
+@media (max-width:1024px){
+  .t-h1{font-size:68px; line-height:.94}
+  .t-h2{font-size:30px; line-height:1}
+  .t-sub1{font-size:28px}
+  .t-p1{font-size:16px; line-height:1.1}
+}
+@media (max-width:600px){
+  .t-h1{font-size:48px}
+  .t-sub1{font-size:28px}
+}
+
+/* ---- Components ---- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  appearance:none; border:0; cursor:pointer;
+  background:var(--n02); color:var(--black);
+  font-family:var(--sans); font-weight:700;
+  font-size:14px; letter-spacing:.03em; text-transform:uppercase;
+  padding:14px 24px; min-height:58px;
+  width:100%; border-radius:2px;
+  transition:background 220ms var(--ease), color 220ms var(--ease);
+}
+.btn:hover{background:var(--black); color:var(--n02)}
+.btn--n03{background:var(--n03)}
+.btn--white{background:var(--white)}
+.btn--white:hover{background:var(--black); color:var(--white)}
+
+.rm{
+  display:inline-block;
+  font-family:var(--serif); font-weight:700;
+  font-size:19px; line-height:.97; letter-spacing:-.01em;
+  color:var(--black);
+  border-bottom:3px solid var(--black);
+  padding-bottom:1px;
+  cursor:pointer;
+  transition:color 140ms var(--ease), border-color 140ms var(--ease);
+}
+.rm:hover, .rm.is-active{color:var(--red); border-color:var(--red)}
+
+.inline{
+  display:inline-block;
+  font-family:var(--serif); font-weight:700;
+  font-size:19px; line-height:.97; letter-spacing:-.01em;
+  color:var(--black);
+  border-bottom:3px solid transparent;
+  padding-bottom:1px;
+  cursor:pointer;
+  transition:border-color 140ms var(--ease);
+}
+.inline:hover, .inline.is-active{ border-color:var(--red) }
+.inline--red{ border-bottom-color: var(--red); }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.hdr{
+  position:relative;
+  display:grid; grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:27px var(--gutter) 0;
+  height:132px; gap:24px;
+}
+.hdr__l{display:flex; align-items:center; gap:24px}
+.hdr__logo{display:block; width:215px; height:auto; justify-self:center; padding: 0 43px;}
+.hdr__logo svg{width:100%; height:auto; fill:var(--red)}
+.hdr__nav{display:flex; gap:40px; justify-content:flex-end}
+.hdr__nav a{
+  font-family:var(--serif); font-weight:700;
+  font-size:19px; line-height:.97; letter-spacing:-.01em;
+  color:var(--black);
+  border-bottom:3px solid transparent;
+  padding-bottom:1px;
+  transition:border-color 140ms var(--ease);
+}
+.hdr__nav a:hover, .hdr__nav a.is-active{ border-color:var(--red) }
+.hdr__menu{ display:none; background:none; border:0; padding:0; width:54px; height:25px; cursor:pointer; flex-direction:column; gap:9px; }
+.hdr__menu::before, .hdr__menu::after{ content:""; display:block; height:8px; background:var(--black) }
+
+@media (max-width:1024px){
+  .hdr{ height:80px; padding-top:21px }
+  .hdr__logo{ width:166px }
+  .hdr__nav{ display:none }
+  .hdr__menu{ display:flex }
+  .hdr__l .inline{ display:none }
+}
+@media (max-width:600px){
+  .hdr{ height:67px; padding-top:9px }
+  .hdr__logo{ width:120px }
+  .hdr__menu{ width:38px; height:20px; gap:6px }
+  .hdr__menu::before, .hdr__menu::after{ height:7px }
+}
+
+/* tablet/mobile pill row under hero */
+.hdr__pills{ display:none; gap:16px; padding:0 var(--gutter); margin-top:16px; }
+.hdr__pills .btn{ flex:1; min-width:0; min-height:40px }
+@media (max-width:1024px){ .hdr__pills{ display:flex } }
+
+/* ============================================================
+   FOOTER (light gray, big faded "redi" mark on right)
+   ============================================================ */
+.ftr{
+  background:var(--n02);
+  padding:60px var(--gutter);
+  display:grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap:60px;
+  align-items:end;
+  min-height:532px;
+  position:relative;
+  overflow:hidden;
+}
+.ftr__nav{ display:flex; flex-direction:column; gap:8px }
+.ftr__nav a{
+  display:inline-block;
+  font-family:var(--sans); font-weight:700;
+  font-size:14px; letter-spacing:.03em; text-transform:uppercase;
+  color:var(--black);
+  border-bottom:1px solid transparent;
+  padding-bottom:2px; width:max-content;
+  transition:border-color 140ms var(--ease), color 140ms var(--ease);
+}
+.ftr__nav a:hover{ border-color:var(--red); color:var(--red) }
+.ftr__brand{
+  margin-top:32px;
+  font-family:var(--sans); font-weight:700;
+  font-size:14px; letter-spacing:.03em; text-transform:uppercase;
+}
+.ftr__mark{
+  width:100%; max-width:925px; height:auto;
+  justify-self:end; align-self:end;
+}
+.ftr__mark svg{ width:100%; height:auto; fill:var(--n01); }
+@media (max-width:1024px){
+  .ftr{ grid-template-columns:1fr; padding:40px var(--gutter); gap:32px }
+  .ftr__mark{ max-width:none }
+}
+@media (max-width:600px){ .ftr{ padding:20px var(--gutter) } }
+
+/* ============================================================
+   01 ABOVE THE FOLD
+   ============================================================ */
+.hero{ padding:80px var(--gutter) 96px }
+.hero__quote{ position:relative; max-width:1217px }
+.hero__quote .t-h1{ color:var(--black) }
+.hero__hl{
+  position:relative; display:inline;
+  background-image:linear-gradient(var(--red), var(--red));
+  background-repeat:no-repeat;
+  background-position:0 96%;
+  background-size:100% 0.18em;
+  padding:0 0.04em;
+}
+.hero__attrib{ display:flex; align-items:center; gap:16px; margin-top:24px }
+.hero__attrib-rule{ width:88px; height:3px; background:var(--black); flex:0 0 auto }
+.hero__attrib-text{ font-family:var(--serif); font-weight:700; font-size:19px; letter-spacing:-.01em }
+
+@media (max-width:1024px){
+  .hero{ padding:24px var(--gutter) 48px }
+  .hero__attrib-rule{ width:70px }
+}
+@media (max-width:600px){
+  .hero__attrib-rule{ width:40px }
+}
+
+/* ============================================================
+   02 WELCOME — very faint near-white text on white
+   (matches Figma: not red panel; just very low-contrast type)
+   ============================================================ */
+.welcome{
+  text-align:center;
+  padding:120px var(--gutter) 100px;
+  position:relative;
+  margin: 0 var(--gutter);
+  background: linear-gradient(rgb(255,0,19),rgb(255,0,19)), url("assets/images/paper-texture.jpg") center / cover no-repeat;
+  border-radius: 5px;
+  color: var(--n02);
+}
+.welcome__h{
+  font-family:var(--serif); font-weight:700;
+  font-size:95px; line-height:.95; letter-spacing:-.02em;
+  color: var(--n02);
+  max-width:1131px; margin:0 auto 32px;
+}
+.welcome__lede{
+  font-family:var(--sans); font-size:24px; line-height:1.15; letter-spacing:.01em;
+  color: var(--n02);
+  max-width:629px; margin:0 auto;
+}
+.welcome__scroll{
+  position:absolute; left:50%; bottom:32px; transform:translateX(-50%);
+  font-family:var(--serif); font-weight:700; font-size:19px; line-height:.97; letter-spacing:-.01em;
+  color: var(--n02);
+  display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
+}
+.welcome__scroll svg{ width:14px; height:14px }
+@media (max-width:1024px){
+  .welcome{ padding:80px var(--gutter) 80px }
+  .welcome__h{ font-size:48px; line-height:.95 }
+  .welcome__lede{ font-size:16px; line-height:1.1 }
+  .welcome__scroll{ display:none }
+}
+
+/* ============================================================
+   03 OUR MISSION
+   ============================================================ */
+.section{ padding:48px var(--gutter) 96px }
+.section__rule{ height:15px; border-radius:2px; background:var(--black); margin-bottom:33px }
+.section__head{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start }
+.section__title{
+  font-family:var(--sans); font-weight:700;
+  font-size:41px; line-height:.96; margin:0;
+}
+.section__lede{
+  font-family:var(--serif); font-weight:400;
+  font-size:44px; line-height:1.1; letter-spacing:-.02em; margin:0;
+}
+.section__body{ display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:96px }
+.section__body--right > *{ max-width:910px }
+.section__copy{
+  font-family:var(--sans); font-size:24px; line-height:1.15; letter-spacing:.01em;
+  margin:0 0 32px;
+}
+@media (max-width:1024px){
+  .section{ padding:32px var(--gutter) 60px }
+  .section__rule{ height:8px; margin-bottom:24px }
+  .section__head{ grid-template-columns:1fr; gap:24px }
+  .section__body{ grid-template-columns:1fr; gap:24px; margin-top:40px }
+  .section__title{ font-size:28px }
+  .section__lede{ font-size:30px }
+  .section__copy{ font-size:16px; line-height:1.1 }
+}
+
+/* ============================================================
+   04 WHAT WE DO — light gray bg, vertical pillar list
+   ============================================================ */
+.wwd{
+  background:var(--n03);
+  padding:48px var(--gutter) 96px;
+}
+.wwd__rule{ height:15px; border-radius:2px; background:var(--black); margin-bottom:33px }
+.wwd__head{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start }
+.wwd__l{ }
+.wwd__title{ font-family:var(--sans); font-weight:700; font-size:41px; line-height:.96; margin:0 }
+.wwd__intro{
+  font-family:var(--sans); font-size:24px; line-height:1.15; letter-spacing:.01em;
+  margin:32px 0;
+  max-width:600px;
+}
+.wwd__r{ width:100%; max-width:910px; min-height:520px; display:flex; flex-direction:column; }
+.wwd__pillars{ display:flex; flex-direction:column; gap:6px; margin-bottom:32px; }
+.wwd__pillar{
+  display:flex; gap:14px; align-items:baseline;
+  font-family:var(--sans); font-weight:700;
+  font-size:30px; line-height:1.1;
+  color: var(--n01);
+  cursor:pointer;
+  transition: color 140ms var(--ease);
+  background:none; border:0; padding:0; text-align:left;
+  width: max-content;
+}
+.wwd__pillar sup{
+  font-size:14px; line-height:1; letter-spacing:.094em;
+  font-weight:400;
+  position: relative; top: -0.1em;
+}
+.wwd__pillar.is-active{ color:var(--red) }
+.wwd__pillar:hover{ color:var(--black) }
+.wwd__bar{ height:15px; border-radius:2px; background:var(--n01); position:relative; margin-bottom:24px; }
+.wwd__bar-fill{ position:absolute; inset:0 auto 0 0; width:25%; background:var(--red); border-radius:2px; transition:width 220ms var(--ease) }
+.wwd__feature{
+  font-family:var(--serif); font-weight:400;
+  font-size:41px; line-height:1.07; letter-spacing:-.02em;
+  color:var(--red);
+  margin:0;
+  height:240px;
+  overflow:hidden;
+  transition:opacity 200ms var(--ease);
+}
+@media (max-width:1024px){
+  .wwd{ padding:32px var(--gutter) 60px }
+  .wwd__rule{ height:8px; margin-bottom:24px }
+  .wwd__head{ grid-template-columns:1fr; gap:24px }
+  .wwd__title{ font-size:28px }
+  .wwd__intro{ font-size:16px; line-height:1.1 }
+  .wwd__pillar{ font-size:22px }
+  .wwd__r{ min-height:0 }
+  .wwd__feature{ font-size:30px; height:auto; min-height:160px }
+  .wwd__bar{ height:8px }
+}
+
+/* ============================================================
+   05 BRUCE'S STORY — black panel, no image, half-and-half
+   ============================================================ */
+.bruce{
+  background:var(--black);
+  color:var(--n01);
+  padding:96px var(--gutter);
+  display:grid; grid-template-columns:1fr 1fr; gap:60px;
+  align-items:start;
+}
+.bruce__title{
+  font-family:var(--sans); font-weight:700; font-size:41px; line-height:.96;
+  color:var(--n01); margin:0;
+}
+.bruce__quote{
+  font-family:var(--serif); font-weight:700;
+  font-size:56px; line-height:1.05; letter-spacing:-.02em;
+  color:var(--n01); margin:0;
+}
+.bruce__hl{
+  background-image:linear-gradient(var(--red), var(--red));
+  background-repeat:no-repeat;
+  background-position:0 96%;
+  background-size:100% 0.18em;
+}
+.bruce__copy{
+  font-family:var(--sans); font-size:24px; line-height:1.15; letter-spacing:.01em;
+  color:var(--n01); margin:0 0 32px;
+}
+.bruce__cta{ background:var(--n02); color:var(--black); }
+.bruce__cta:hover{ background:var(--white); color:var(--black) }
+
+@media (max-width:1024px){
+  .bruce{ grid-template-columns:1fr; padding:60px var(--gutter); gap:32px }
+  .bruce__title{ font-size:28px }
+  .bruce__quote{ font-size:36px; line-height:1.05 }
+  .bruce__copy{ font-size:16px; line-height:1.1 }
+}
+
+/* ============================================================
+   06 GET INVOLVED — centered single column list
+   ============================================================ */
+.get{
+  padding:96px var(--gutter);
+  display:flex; flex-direction:column; align-items:center;
+  text-align:center;
+}
+.get__list{
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items:baseline;
+  gap: 0 24px;
+  font-family:var(--serif); font-weight:700;
+  font-size:41px; line-height:1.4; letter-spacing:-.02em;
+}
+.get__list .row{ display:contents }
+.get__list .l{ text-align:right; color:var(--n01); transition:color 140ms var(--ease); cursor:pointer; }
+.get__list .c{ text-align:center; color:var(--black); font-weight:700; }
+.get__list .r{ text-align:left; color:var(--red); transition:color 140ms var(--ease); cursor:pointer; }
+.get__list .l:hover{ color:var(--black) }
+.get__list .r:hover{ color:var(--black) }
+
+.get__cta{ width:255px; margin-top:48px; min-height:42px }
+
+@media (max-width:1024px){
+  .get{ padding:60px var(--gutter) }
+  .get__list{
+    grid-template-columns: 1fr;
+    gap:8px;
+    font-size:28px; line-height:1.2;
+  }
+  .get__list .l, .get__list .c, .get__list .r{ text-align:center }
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-hero{
+  padding:48px var(--gutter) 96px;
+  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end;
+}
+.about-hero__title{ margin:0 0 24px }
+.about-hero__lede{
+  font-family:var(--serif);
+  font-size:30px; line-height:1; letter-spacing:-.02em;
+  margin:0;
+}
+@media (max-width:1024px){
+  .about-hero{ grid-template-columns:1fr; padding:24px var(--gutter) 48px; gap:24px }
+  .about-hero__lede{ font-size:24px }
+}
+
+.about-section{ padding:48px var(--gutter) 96px }
+.about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:48px; align-items:start; }
+.about-people{ display:flex; flex-direction:column; gap:0 }
+.about-people__row{
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  padding:24px 0;
+  border-bottom:1px solid var(--n01);
+  cursor:pointer;
+  transition:background 140ms var(--ease);
+}
+.about-people__row:first-child{ border-top:1px solid var(--n01) }
+.about-people__row:hover{ background:var(--n02) }
+.about-people__row.is-active .about-people__name{ color:var(--red) }
+.about-people__name{
+  font-family:var(--sans); font-weight:700; font-size:30px; line-height:1;
+  margin:0; transition:color 140ms var(--ease);
+}
+.about-people__role{
+  font-family:var(--sans); font-weight:400; font-size:18px; line-height:1.1;
+  margin:0; align-self:center;
+}
+.about-detail{ position:sticky; top:24px; display:flex; flex-direction:column; gap:24px }
+.about-detail__img{
+  width:100%; aspect-ratio:1/1;
+  background:url("assets/images/advisory-portrait.png") center/cover no-repeat var(--n02);
+  border-radius:2px;
+}
+.about-detail__bio{
+  font-family:var(--sans); font-size:24px; line-height:1.15; letter-spacing:.01em;
+  margin:0;
+}
+@media (max-width:1024px){
+  .about-grid{ grid-template-columns:1fr; gap:32px }
+  .about-detail{ position:static }
+  .about-people__name{ font-size:22px }
+  .about-people__role{ font-size:14px }
+  .about-detail__bio{ font-size:16px; line-height:1.1 }
+}
+
+.about-team{ padding:48px var(--gutter) 96px }
+.about-team__grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:48px; align-items:start; }
+.about-team__img{
+  width:100%; aspect-ratio:16/9;
+  background:url("assets/images/team-portrait.png") center/cover no-repeat var(--n02);
+  border-radius:2px;
+}
+.about-team__cta{ margin-top:32px }
+@media (max-width:1024px){ .about-team__grid{ grid-template-columns:1fr; gap:24px } }
+
+/* ============================================================
+   WHAT WE DO PAGE — extra block at bottom (Speaking Engagements)
+   ============================================================ */
+.wwd-extra{ padding:96px var(--gutter); background:var(--n03); }
+.wwd-extra__h{
+  font-family:var(--serif); font-weight:400; font-size:41px; line-height:1.07; letter-spacing:-.02em;
+  color:var(--red); max-width:910px; margin:0 0 32px;
+}
+.wwd-extra__cta{ background:var(--white); max-width:910px; }
+
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
+.contact{ padding:48px var(--gutter) 96px }
+.contact__head{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; margin-bottom:64px }
+.contact__lede{
+  font-family:var(--serif);
+  font-size:30px; line-height:1; letter-spacing:-.02em;
+  margin:0;
+}
+.contact__grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start }
+.contact__info{ display:flex; flex-direction:column; gap:32px }
+.contact__info-block h3{
+  font-family:var(--sans); font-weight:400; font-size:12px; line-height:1; letter-spacing:.094em; text-transform:uppercase;
+  margin:0 0 8px; color:var(--black);
+}
+.contact__info-block p, .contact__info-block a{
+  font-family:var(--serif); font-weight:400; font-size:30px; line-height:1.1; letter-spacing:-.02em;
+  margin:0; color:var(--black); display:block;
+}
+.contact__info-block a{ border-bottom:3px solid transparent; transition:border-color 140ms var(--ease); width:max-content }
+.contact__info-block a:hover{ border-color:var(--red) }
+.contact__form{ display:flex; flex-direction:column; gap:20px }
+.contact__field{ display:flex; flex-direction:column; gap:8px }
+.contact__field label{
+  font-family:var(--sans); font-weight:400; font-size:12px; line-height:1; letter-spacing:.094em; text-transform:uppercase;
+}
+.contact__field input, .contact__field textarea{
+  font-family:var(--sans); font-size:18px; line-height:1.2;
+  padding:14px 16px; min-height:54px;
+  border:1px solid var(--n01); background:var(--white); color:var(--black);
+  border-radius:2px; outline:none;
+  transition:border-color 140ms var(--ease);
+}
+.contact__field textarea{ min-height:160px; resize:vertical; font-family:var(--sans) }
+.contact__field input:focus, .contact__field textarea:focus{ border-color:var(--red) }
+.contact__submit{
+  width:100%; max-width:255px;
+  min-height:42px;
+  padding:14px 24px;
+  background:var(--n02); color:var(--black);
+  font-family:var(--sans); font-weight:700;
+  font-size:12px; line-height:.96; letter-spacing:.094em; text-transform:uppercase;
+  border:0; border-radius:2px; cursor:pointer;
+  transition:background 220ms var(--ease), color 220ms var(--ease);
+}
+.contact__submit:hover{ background:var(--black); color:var(--n02) }
+.contact__success{
+  display:none;
+  font-family:var(--serif); font-weight:700; font-size:24px; letter-spacing:-.01em;
+  color:var(--red); margin-top:16px;
+}
+.contact__form.is-sent .contact__success{ display:block }
+@media (max-width:1024px){
+  .contact{ padding:24px var(--gutter) 60px }
+  .contact__head{ grid-template-columns:1fr; gap:24px; margin-bottom:32px }
+  .contact__lede{ font-size:24px }
+  .contact__grid{ grid-template-columns:1fr; gap:32px }
+  .contact__info-block p, .contact__info-block a{ font-size:22px }
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+.mm{ position:fixed; inset:0; background:var(--white); z-index:100; display:none; padding:20px }
+.mm.is-open{ display:block }
+.mm__top{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; margin-bottom:80px }
+.mm__close{ background:none; border:0; padding:0; width:38px; height:38px; cursor:pointer; position:relative; }
+.mm__close::before, .mm__close::after{
+  content:""; position:absolute; left:6px; top:50%; width:32px; height:5px; background:var(--black);
+}
+.mm__close::before{ transform:translateY(-50%) rotate(45deg) }
+.mm__close::after { transform:translateY(-50%) rotate(-45deg) }
+.mm__logo{ width:120px; height:auto; justify-self:center }
+.mm__logo svg{ width:100%; height:auto; fill:var(--red) }
+.mm__list{ text-align:center; display:flex; flex-direction:column; gap:24px; padding-top:48px }
+.mm__list a{
+  font-family:var(--serif); font-weight:700;
+  font-size:48px; line-height:1.02; letter-spacing:-.02em;
+  color:var(--black); cursor:pointer;
+  transition:color 140ms var(--ease);
+}
+.mm__list a:hover, .mm__list a.is-active{ color:var(--red) }
+.mm__divider{ width:161px; height:7px; background:var(--red); margin:24px auto }
+
+/* ============================================================
+   util
+   ============================================================ */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
+</style>
+</head>
+
+<body>
+
+<!-- LOGO TEMPLATE (used everywhere) -->
+<template id="logo-svg">
+  <svg viewBox="0 0 320.78 153.6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M126.66,91.62h27.43c-5.01,18.49-21.47,27.88-40.59,27.88-23.03,0-43.1-17.55-43.1-42.45s20.06-42.45,43.1-42.45c28.37,0,44.97,22.71,41.53,50.91h-57.2c2.51,7.37,8.62,11.27,15.82,11.27,6.12,0,10.35-1.41,13.01-5.17h0ZM98.14,68.29h29.46c-.78-4.86-5.64-10.66-14.1-10.66-6.9,0-12.85,3.75-15.36,10.66Z"/>
+    <path d="M246.56,2.4v114.24h-26.29v-5.18c-4.12,3.35-11.13,7-21.19,7-20.88,0-37.34-17.51-37.34-41.25s16.46-41.25,37.34-41.25c10.06,0,17.07,3.66,21.19,7V2.4h26.29ZM205.34,94.43c9,0,15.54-7,15.54-17.2s-6.55-17.2-15.54-17.2-15.54,7-15.54,17.2,6.71,17.2,15.54,17.2Z"/>
+    <path d="M269.34,94.91h7.04v-32.33h-13.56v-22.05h39.94v54.37h18.03v22.05h-62.44v-22.05h10.99Z"/>
+    <path d="M288.74,0c-9.4,0-17.17,7.43-17.17,16.9s7.77,16.75,17.17,16.75,17.17-7.28,17.17-16.75-7.77-16.9-17.17-16.9Z"/>
+    <path d="M57.49,36.5c-18.69.55-19.03,13.39-19.03,13.39v-13.39h-.34s-5.6,0-5.6,0c-3.63-.01-8.29-.06-10.42,0H0v21.98h11.49v37.33H0v21.98h48.08v-21.98h-11.12v-20.51c0-5.35,1.52-10.43,3.91-12.69,2.45-2.31,6.19-3.84,12.07-3.84h14.48v-22.28h-9.92Z"/>
+    <rect y="131.61" width="320.78" height="21.99"/>
+  </svg>
+</template>
+
+<!-- HEADER -->
+<header class="hdr" data-screen-label="Header">
+  <div class="hdr__l">
+    <button class="hdr__menu" aria-label="Open menu" data-action="open-menu" type="button"></button>
+    <a class="inline inline--red" data-page="home" href="#home">info</a>
+  </div>
+  <a class="hdr__logo" data-logo data-page="home" href="#home" aria-label="REDI — Home"></a>
+  <nav class="hdr__nav">
+    <a data-page="contact" href="#contact">contact</a>
+  </nav>
+</header>
+<div class="hdr__pills">
+  <a class="btn" data-page="about" href="#about">Our Mission</a>
+  <a class="btn" data-page="contact" href="#contact">Contact</a>
+</div>
+
+<!-- ============================================================
+     HOME
+     ============================================================ -->
+<main id="home" class="page is-active" data-page="home" data-screen-label="01 Home">
+
+  <!-- 01 Above the fold -->
+  <section class="hero">
+    <div class="hero__quote">
+      <h1 class="t-h1">“I knew I could not cure cancer, so I devoted the rest of my life to <span class="hero__hl">early detection</span> <span class="hero__hl">and prevention.</span>”</h1>
+    </div>
+    <div class="hero__attrib">
+      <div class="hero__attrib-rule"></div>
+      <span class="hero__attrib-text">Bruce Ratner</span>
+    </div>
+  </section>
+
+  <!-- 02 Welcome (very faint near-white text) -->
+  <section class="welcome">
+    <h2 class="welcome__h">Welcome to Ratner Early Detection Initiative.</h2>
+    <p class="welcome__lede">A think tank and foundation devoted to saving lives and ensuring that every cancer victim gets the best cancer care.</p>
+    <span class="welcome__scroll">Scroll Down To  Read Our Mission
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 9l6 6 6-6"/></svg>
+    </span>
+  </section>
+
+  <!-- 03 Our Mission -->
+  <section class="section">
+    <div class="section__rule"></div>
+    <div class="section__head">
+      <h2 class="section__title">Our Mission</h2>
+      <p class="section__lede">Ratner Early Detection Initiative (REDI) is reshaping outdated approaches to early detection to revolutionize cancer prevention and improve outcomes.</p>
+    </div>
+    <div class="section__body">
+      <div></div>
+      <div class="section__body--right">
+        <p class="section__copy">By expanding access to screening, advancing technologies, and challenging how systems operate, REDI works to ensure cancer is caught early — when it’s most curable.</p>
+        <p class="section__copy">We are committed to making early detection a standard of cancer care.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 What We Do -->
+  <section class="wwd" data-section="wwd">
+    <div class="wwd__rule"></div>
+    <div class="wwd__head">
+      <div class="wwd__l">
+        <h2 class="wwd__title">What We Do</h2>
+        <p class="wwd__intro">As both a think tank and a foundation, we advocate for early detection while supporting pilot initiatives and emerging technology research.</p>
+        <a class="rm" href="#home">Read More</a>
+      </div>
+      <div class="wwd__r">
+        <div class="wwd__pillars" role="tablist">
+          <button class="wwd__pillar is-active" data-tab="0"><sup>01</sup>Research</button>
+          <button class="wwd__pillar" data-tab="1"><sup>02</sup>Policy, Advocacy &amp; Insurance Reform</button>
+          <button class="wwd__pillar" data-tab="2"><sup>03</sup>Public Awareness</button>
+          <button class="wwd__pillar" data-tab="3"><sup>04</sup>Publishing &amp; Insight</button>
+        </div>
+        <div class="wwd__bar"><div class="wwd__bar-fill" id="wwd-fill"></div></div>
+        <p class="wwd__feature" id="wwd-feature">Partnering with physicians, scientists, healthcare institutions and tech companies to fund and promote cutting-edge early detection technologies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Bruce's Story (black panel, no image) -->
+  <section class="bruce">
+    <div>
+      <h3 class="bruce__title">Bruce’s Story</h3>
+    </div>
+    <div>
+      <p class="bruce__quote">“The system must change: we need to spend more money, do more research, and make people aware of the benefits of early detection. <span class="bruce__hl">Early detection will save the people we love.</span>”</p>
+      <div style="height:48px"></div>
+      <p class="bruce__copy">Like so many of us, Bruce Ratner saw loved ones — including mother, brother and closest friends — suffer and die from cancer. He realized catching cancer early is the closest thing we have to a cure. He founded REDI to ask the hard questions, challenge the status quo, and fight for equity in cancer care.</p>
+      <a class="btn bruce__cta" href="https://www.amazon.com/Early-Detection-How-America-Cancer/dp/1682193519" target="_blank" rel="noopener">Read the Book</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<main id="about" class="page" data-page="about" data-screen-label="02 About">
+  <section class="about-hero">
+    <h1 class="t-h1 about-hero__title">Meet Redi</h1>
+    <p class="about-hero__lede">Working side by side—healthcare professionals, scientists, and advocates—to make early detection save more lives.</p>
+  </section>
+
+  <section class="about-section">
+    <div class="section__rule"></div>
+    <h2 class="section__title">Our Advisory Board</h2>
+    <div class="about-grid">
+      <div class="about-people" id="advisory-list">
+        <div class="about-people__row is-active" data-bio="0"><p class="about-people__name">Martin Vácha</p><p class="about-people__role">Founder Partner</p></div>
+        <div class="about-people__row" data-bio="1"><p class="about-people__name">Daniel Quisek</p><p class="about-people__role">Scientist</p></div>
+        <div class="about-people__row" data-bio="2"><p class="about-people__name">Veronika Kráľová</p><p class="about-people__role">Lawyer</p></div>
+        <div class="about-people__row" data-bio="3"><p class="about-people__name">Andrea Vacovská</p><p class="about-people__role">Consultant</p></div>
+        <div class="about-people__row" data-bio="4"><p class="about-people__name">David Řeřicha</p><p class="about-people__role">Studio Assistant</p></div>
+        <div class="about-people__row" data-bio="5"><p class="about-people__name">Viktor Mizera</p><p class="about-people__role">Policy maker</p></div>
+        <div class="about-people__row" data-bio="6"><p class="about-people__name">Marek Čuban</p><p class="about-people__role">Policy maker</p></div>
+        <div class="about-people__row" data-bio="7"><p class="about-people__name">Nikola Kubíčková</p><p class="about-people__role">Policy maker</p></div>
+      </div>
+      <div class="about-detail">
+        <div class="about-detail__img"></div>
+        <p class="about-detail__bio" id="advisory-bio">Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-team">
+    <div class="section__rule"></div>
+    <h2 class="section__title">Our Redi Team</h2>
+    <div class="about-team__grid">
+      <div></div>
+      <div>
+        <div class="about-team__img"></div>
+        <a class="btn about-team__cta" data-page="contact" href="#contact">contact us</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<main id="contact" class="page" data-page="contact" data-screen-label="04 Contact">
+
+  <!-- Hero (matches home hero) -->
+  <section class="hero">
+    <div class="hero__quote">
+      <h1 class="t-h1">Get in touch with the <span class="hero__hl">Ratner Early Detection Initiative.</span></h1>
+    </div>
+  </section>
+
+  <!-- Section: Form (white, simple) -->
+  <section class="section">
+    <div class="section__rule"></div>
+    <div class="section__head">
+      <h2 class="section__title">Send a Message</h2>
+      <p class="section__lede">Tell us about your inquiry, partnership idea, or press request.</p>
+    </div>
+    <div class="section__body">
+      <div></div>
+      <div class="section__body--right">
+        <form class="contact__form" id="contact-form" novalidate>
+          <div class="contact__field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="contact__field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="contact__field">
+            <label for="cf-subject">Subject</label>
+            <input id="cf-subject" name="subject" type="text" />
+          </div>
+          <div class="contact__field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required></textarea>
+          </div>
+          <button class="btn contact__submit" type="submit">Send Message</button>
+          <p class="contact__success">Thank you — we’ll be in touch.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="ftr" data-screen-label="Footer">
+  <div>
+    <nav class="ftr__nav">
+      <a data-page="contact" href="#contact">Contact Us</a>
+    </nav>
+    <p class="ftr__brand">Ratner Early Detection Initiative</p>
+  </div>
+  <div class="ftr__mark" data-logo></div>
+</footer>
+
+<!-- ============================================================
+     MOBILE MENU
+     ============================================================ -->
+<aside class="mm" id="mm" aria-hidden="true" data-screen-label="Mobile menu">
+  <div class="mm__top">
+    <button class="mm__close" aria-label="Close menu" data-action="close-menu" type="button"></button>
+    <a class="mm__logo" data-logo data-page="home" href="#home" aria-label="REDI — Home"></a>
+    <span></span>
+  </div>
+  <div class="mm__list">
+    <a data-page="about" href="#about">our mission</a>
+    <a data-page="home" href="#home">info</a>
+  </div>
+  <div class="mm__divider"></div>
+  <div class="mm__list">
+    <a href="#home" data-page="contact">contact</a>
+  </div>
+</aside>
+
+<script>
+(function(){
+  // Inject logo SVG into all data-logo placeholders
+  const logoTpl = document.getElementById('logo-svg');
+  document.querySelectorAll('[data-logo]').forEach(el => {
+    el.appendChild(logoTpl.content.cloneNode(true));
+  });
+
+  const mm = document.getElementById('mm');
+  function openMenu(){ mm.classList.add('is-open'); mm.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function closeMenu(){ mm.classList.remove('is-open'); mm.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  const pages = document.querySelectorAll('main.page');
+  const navAnchors = document.querySelectorAll('.hdr__nav a');
+  function navTo(id){
+    pages.forEach(p => p.classList.toggle('is-active', p.id === id));
+    navAnchors.forEach(a => a.classList.toggle('is-active', a.getAttribute('data-page') === id));
+    if (location.hash !== '#' + id) location.hash = '#' + id;
+    window.scrollTo({ top: 0 });
+    closeMenu();
+  }
+
+  document.body.addEventListener('click', e => {
+    const a = e.target.closest('a[data-page]');
+    if (a){ e.preventDefault(); navTo(a.getAttribute('data-page')); return; }
+    const action = e.target.closest('[data-action]');
+    if (action){
+      const v = action.getAttribute('data-action');
+      if (v === 'open-menu') openMenu();
+      if (v === 'close-menu') closeMenu();
+    }
+  });
+
+  const initial = (location.hash || '#home').slice(1);
+  if (document.getElementById(initial)) navTo(initial);
+  window.addEventListener('hashchange', () => {
+    const id = (location.hash || '#home').slice(1);
+    if (document.getElementById(id)) navTo(id);
+  });
+
+  // What-we-do tabs
+  const wwdContent = [
+    "Partnering with physicians, scientists, healthcare institutions and tech companies to fund and promote cutting-edge early detection technologies.",
+    "Working with government and healthcare professionals to make cancer care and insurance more accessible, screening more effective, and to help reduce disparities in underserved communities.",
+    "Campaigning to break stigma, spread awareness, and motivate people to get screened.",
+    "Producing books, papers, and conversations that challenge outdated models and advance bold thinking in cancer detection."
+  ];
+  document.querySelectorAll('.wwd').forEach(scope => {
+    const tabs = scope.querySelectorAll('.wwd__pillar');
+    const fill = scope.querySelector('.wwd__bar-fill');
+    const feat = scope.querySelector('.wwd__feature');
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = +btn.getAttribute('data-tab');
+        tabs.forEach(b => b.classList.toggle('is-active', b === btn));
+        if (fill) fill.style.width = ((i + 1) * 25) + '%';
+        if (feat){
+          feat.style.opacity = '0';
+          setTimeout(() => { feat.textContent = wwdContent[i]; feat.style.opacity = '1'; }, 140);
+        }
+      });
+    });
+  });
+
+  // Advisory bio
+  const bios = [
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.",
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.",
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.",
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.",
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.",
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.",
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success.",
+    "Short Bio - With a background in education and tech innovation, they’re bridging the gap between learning and real-world success."
+  ];
+  const list = document.getElementById('advisory-list');
+  const bioEl = document.getElementById('advisory-bio');
+  if (list){
+    list.addEventListener('click', e => {
+      const row = e.target.closest('.about-people__row'); if (!row) return;
+      list.querySelectorAll('.about-people__row').forEach(r => r.classList.toggle('is-active', r === row));
+      if (bioEl) bioEl.textContent = bios[+row.getAttribute('data-bio')] || bios[0];
+    });
+  }
+  // Contact form
+  const cf = document.getElementById('contact-form');
+  if (cf){
+    cf.addEventListener('submit', e => {
+      e.preventDefault();
+      cf.classList.add('is-sent');
+      cf.reset();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
