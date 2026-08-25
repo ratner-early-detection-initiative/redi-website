@@ -24,6 +24,8 @@
   a { color: #000000; text-decoration: none; }
   a:hover { color: #000000; }
   button { font: inherit; color: inherit; }
+  /* Hide the runtime's loading skeleton (grey box) while components resolve */
+  .sc-placeholder { background: none !important; border: 0 !important; }
 </style>
 </helmet>
 
@@ -148,11 +150,13 @@ class Component extends DCLogic {
 
   renderVals() {
     const bp = this.bp();
+    // Footer horizontal padding: clamp(16px, 3.13vw, 60px)
+    const footerPadX = Math.min(60, Math.max(16, 0.0313 * this.state.w));
     return {
       isDesktop: bp === "desktop",
       isCompact: bp !== "desktop",
       logoWidth: bp === "mobile" ? 120 : bp === "tablet" ? 166 : 215.09,
-      footerMarkWidth: bp === "desktop" ? Math.max(360, Math.min(925, (this.state.w - 180) / 2)) : 585,
+      footerMarkWidth: bp === "desktop" ? Math.max(360, Math.min(925, (this.state.w - 180) / 2)) : Math.min(585, this.state.w - 2 * footerPadX),
       sent: this.props.showSuccessState ?? this.state.sent,
       onSubmit: (e) => {
         e.preventDefault();
