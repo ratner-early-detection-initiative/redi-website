@@ -1,0 +1,68 @@
+/* REDI webfonts. Family names are declared EXACTLY as the Figma file names them,
+   so code materialized from the .fig resolves without rewriting font stacks.
+   TT Rationalist ships as the TRIAL cut — swap for licensed files before production. */
+
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Thin.ttf") format("truetype");font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-ThinItalic.ttf") format("truetype");font-weight:100;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-ExtraLight.ttf") format("truetype");font-weight:200;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-ExtraLightItalic.ttf") format("truetype");font-weight:200;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Light.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-LightItalic.ttf") format("truetype");font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Italic.ttf") format("truetype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Normal.ttf") format("truetype");font-weight:450;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-NormalItalic.ttf") format("truetype");font-weight:450;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-MediumItalic.ttf") format("truetype");font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-DemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-DemiBoldItalic.ttf") format("truetype");font-weight:600;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-BoldItalic.ttf") format("truetype");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-ExtraBoldItalic.ttf") format("truetype");font-weight:800;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-Black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trl";src:url("../assets/fonts/TTRationalistTrial-BlackItalic.ttf") format("truetype");font-weight:900;font-style:italic;font-display:swap}
+
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Thin.ttf") format("truetype");font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-ThinItalic.ttf") format("truetype");font-weight:100;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-ExtraLight.ttf") format("truetype");font-weight:200;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-ExtraLightItalic.ttf") format("truetype");font-weight:200;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Light.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-LightItalic.ttf") format("truetype");font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Italic.ttf") format("truetype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Normal.ttf") format("truetype");font-weight:450;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-NormalItalic.ttf") format("truetype");font-weight:450;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-MediumItalic.ttf") format("truetype");font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-DemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-DemiBoldItalic.ttf") format("truetype");font-weight:600;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-BoldItalic.ttf") format("truetype");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-ExtraBoldItalic.ttf") format("truetype");font-weight:800;font-style:italic;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-Black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"TT Rationalist Trial";src:url("../assets/fonts/TTRationalistTrial-BlackItalic.ttf") format("truetype");font-weight:900;font-style:italic;font-display:swap}
+
+@font-face{font-family:"Neue Haas Grotesk Display Std";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:450;font-style:normal;font-display:swap}
+@font-face{font-family:"Neue Haas Grotesk Display Std";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Neue Haas Grotesk Display Std";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-75Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"NeueHaasGroteskDisp W02";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:450;font-style:normal;font-display:swap}
+@font-face{font-family:"NeueHaasGroteskDisp W02";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"NeueHaasGroteskDisp W02";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-75Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Neue Haas Grotesk Display Pro";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:450;font-style:normal;font-display:swap}
+@font-face{font-family:"Neue Haas Grotesk Display Pro";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Neue Haas Grotesk Display Pro";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-75Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+
+/* Bold-only alias used verbatim by the Figma file */
+@font-face{font-family:"NeueHaasGroteskDisp W02 Bd";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-75Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"NeueHaasGroteskDisp W02 Bd";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-75Bold.otf") format("opentype");font-weight:450;font-style:normal;font-display:swap}
+
+/* SUBSTITUTION: the Light cut (NeueHaasGroteskDisp W02 Lt, used for the 140/105px
+   Big Numbers style) was not supplied. It falls back to 55 Roman. */
+@font-face{font-family:"NeueHaasGroteskDisp W02 Lt";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:450;font-style:normal;font-display:swap}
+@font-face{font-family:"NeueHaasGroteskDisp W02 Lt";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+
+/* SUBSTITUTION: "Plain" (12px annotation labels inside the style-guide frames only,
+   never in a shipped surface) was not supplied. Falls back to 55 Roman. */
+@font-face{font-family:"Plain";src:url("../assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}

@@ -1,0 +1,53 @@
+/* REDI colour system — values transcribed verbatim from Redi_Website_Final.fig */
+
+:root {
+  /* ---- Brand ---------------------------------------------------------- */
+  /* The red actually painted throughout the site + the "Redi Red" Figma Variable. */
+  --redi-red: #FF0013;
+  /* The red printed on the Color style-guide board: "RED #FF0037 / R255 G0 B55 /
+     C0 M90 Y88 K0 / Pantone Red 032". Used for the large swatch fields. */
+  --redi-red-spec: #FF0037;
+  /* Underline Animation + hero rules are drawn in pure red. */
+  --redi-red-underline: #FF0000;
+
+  /* ---- Neutrals ------------------------------------------------------- */
+  /* Names follow the Figma Variables. NOTE: the printed Color board labels these
+     two the other way round (neutral 01 = #CED7D7, neutral 02 = #E9ECEC). */
+  --neutral-01: #E9ECEC; /* Pantone Cool Gray 1 — footer + secondary CTA fill */
+  --neutral-02: #CED7D7; /* Pantone 441 — type on black */
+  --mist: #E3EBEB;       /* "What We Do" section field + PRESS button fill */
+  --black: #000000;      /* Pantone Black */
+  --white: #FFFFFF;
+
+  /* Incidental */
+  --grey-mid: #A7A7A7;
+
+  /* ---- Semantic ------------------------------------------------------- */
+  --text-primary: var(--black);
+  --text-inverse: var(--neutral-02);      /* body + headings on black */
+  --text-on-red: var(--neutral-01);       /* type over the red-flooded photo */
+  --text-accent: var(--redi-red);
+  --text-muted: color-mix(in srgb, var(--black) 50%, transparent);
+
+  --surface-page: var(--white);
+  --surface-section: var(--mist);         /* 04 What We Do */
+  --surface-footer: var(--neutral-01);
+  --surface-inverse: var(--black);        /* 05 Bruce's Story */
+  --surface-accent: var(--redi-red);
+
+  --cta-secondary-bg: var(--neutral-01);
+  --cta-secondary-bg-alt: var(--mist);
+  --cta-secondary-fg: var(--black);
+  --cta-secondary-bg-hover: var(--black);
+  --cta-secondary-fg-hover: var(--neutral-02);
+
+  --rule: var(--black);                   /* 15px section rules */
+  --rule-inactive: var(--neutral-02);     /* progress track */
+  --rule-active: var(--redi-red);         /* progress fill */
+  --link-underline: var(--black);
+  --link-underline-hover: var(--redi-red);
+
+  /* ---- Elevation (the file uses shadow twice, both on prototype overlays) -- */
+  --shadow-soft: 0 0 24px rgba(255,238,238,0.61);
+  --shadow-scrim: 0 0 24px rgba(0,0,0,0.41);
+}

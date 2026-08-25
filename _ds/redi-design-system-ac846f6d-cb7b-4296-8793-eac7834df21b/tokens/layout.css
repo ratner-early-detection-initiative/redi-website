@@ -1,0 +1,57 @@
+/* REDI layout, geometry and motion. Measured off the 1920 desktop frames. */
+
+:root {
+  /* ---- Canvas + gutters ----------------------------------------------- */
+  --canvas-desktop: 1920px;
+  --canvas-tablet: 1024px;
+  --canvas-mobile: 375px;
+  --gutter-desktop: 40px;   /* every desktop section starts at x=40 */
+  --gutter-mobile: 10px;    /* mobile menu content starts at x=10 */
+  --content-desktop: 1840px;/* 1920 − 2×40 */
+  --nav-width: 1841px;
+
+  /* Two-column split used by Our Mission, Bruce's Story, What We Do, About.
+     Left rail starts at the gutter; right column starts at 970 and is 910 wide. */
+  --col-right-x: 970px;
+  --col-right-w: 910px;
+
+  /* ---- Rules and underlines ------------------------------------------- */
+  --rule-height: 15px;      /* full-width section divider + hero underline */
+  --rule-radius: 2px;
+  --link-underline-height: 3px;
+  --link-underline-gap: 19px; /* underline sits 19px below the cap line of a 19px link */
+  /* Style-guide note: "Underline thickness = 1/5 of the height" */
+  --underline-ratio: 0.2; /* @kind other */
+
+  /* ---- Radii ----------------------------------------------------------- */
+  --radius-none: 0px;
+  --radius-hairline: 2px;   /* buttons, rules, media rounding */
+  --radius-media: 5px;      /* full-bleed image blocks */
+  --radius-pill: 999px;     /* play button */
+
+  /* ---- Control sizes --------------------------------------------------- */
+  --cta-height: 58px;       /* full-width primary/secondary CTA */
+  --cta-height-compact: 40px;/* style-guide compact CTA */
+  --cta-padding-y: 4px;
+  --cta-gap: 10px;
+  --play-size: 58.867px;
+  --play-glyph: 34.081px;
+
+  /* ---- Section rhythm (desktop) ---------------------------------------- */
+  --section-pad-top: 45px;
+  --section-pad-top-lg: 99px;
+  --nav-top: 27px;
+  --nav-height: 105.199px;
+  --header-height: 164px;
+  --footer-height: 532px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast: 120ms; /* @kind other */
+  --dur-base: 220ms; /* @kind other */
+  --dur-slow: 420ms; /* @kind other */  /* underline wipe */
+}
+
+/* Global link colour so untouched anchors never render browser blue. */
+a { color: var(--text-primary); text-decoration: none; }
+a:hover { color: var(--redi-red); }

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Ratner Early Detection Initiative</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo/redi-red.svg">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/figma-src/fig-tokens.css">
+<link rel="stylesheet" href="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/figma-src/fig-typography.css">
+<link rel="stylesheet" href="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/tokens/layout.css">
+<link rel="stylesheet" href="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/styles.css">
+<script src="_ds/redi-design-system-ac846f6d-cb7b-4296-8793-eac7834df21b/_ds_bundle.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  a { color: #000000; text-decoration: none; }
+  a:hover { color: #000000; }
+  button { font: inherit; color: inherit; }
+</style>
+</helmet>
+
+<div data-screen-label="04 Contact" style="background:#FFFFFF;color:#000000;font-family:'Neue Haas Grotesk Display Std',Helvetica,Arial,sans-serif;overflow-x:hidden">
+
+<header style="display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:24px;padding:clamp(9px,1.4vw,27px) clamp(16px,3.13vw,60px) 0;min-height:clamp(67px,6.9vw,132px)">
+  <div style="display:flex;align-items:center;gap:24px">
+    <sc-if value="{{ isCompact }}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-label="Open menu" onClick="{{ openMenu }}" style="display:flex;flex-direction:column;gap:clamp(6px,0.47vw,9px);width:clamp(38px,2.8vw,54px);height:auto;padding:0;border:0;background:none;cursor:pointer">
+        <span style="display:block;width:100%;height:clamp(7px,0.42vw,8px);background:#000000"></span>
+        <span style="display:block;width:100%;height:clamp(7px,0.42vw,8px);background:#000000"></span>
+      </button>
+    </sc-if>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <a href="index.html" style="display:inline-block;font-family:'TT Rationalist Trl',Georgia,serif;font-weight:700;font-size:clamp(14px,calc(4px + 0.781vw),19px);line-height:0.97;letter-spacing:-0.01em;color:#000000;border-bottom:3px solid transparent;padding-bottom:1px" style-hover="border-bottom-color:var(--redi-red)">info</a>
+    </sc-if>
+  </div>
+  <a href="index.html" aria-label="REDI — Home" style="display:block;justify-self:center;padding:0 clamp(0px,2.2vw,43px)">
+    <x-import component-from-global-scope="REDIDesignSystem_ac846f.Logo" tone="#FF0013" width="{{ logoWidth }}" hint-size="215px,106px"></x-import>
+  </a>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <nav style="display:flex;gap:40px;justify-content:flex-end">
+      <a href="contact.html" style="display:inline-block;font-family:'TT Rationalist Trl',Georgia,serif;font-weight:700;font-size:clamp(14px,calc(4px + 0.781vw),19px);line-height:0.97;letter-spacing:-0.01em;color:#000000;border-bottom:3px solid var(--redi-red);padding-bottom:1px">contact</a>
+    </nav>
+  </sc-if>
+</header>
+
+
+<section data-screen-label="Contact hero" style="padding:clamp(24px,4.2vw,80px) clamp(16px,3.13vw,60px) clamp(48px,5vw,96px);min-height:calc(100svh - clamp(67px,6.9vw,132px));display:flex;flex-direction:column;justify-content:center">
+  <div style="max-width:1217px">
+    <h1 style="margin:0;font-family:'TT Rationalist Trl',Georgia,serif;font-weight:700;font-size:clamp(48px,calc(37.15px + 3.013vw),95px);line-height:1;letter-spacing:-0.02em;text-wrap:pretty"><span style="display:inline;padding:0 0.04em;background-image:linear-gradient(var(--redi-red-underline),var(--redi-red-underline));background-repeat:no-repeat;background-position:0 96%;background-size:100% 0.18em">Get in touch</span> with the Ratner Early Detection Initiative.</h1>
+  </div>
+</section>
+
+<section data-screen-label="Send a Message" style="padding:clamp(32px,2.5vw,48px) clamp(16px,3.13vw,60px) clamp(48px,5vw,96px);min-height:100svh;display:flex;flex-direction:column">
+  <div style="height:clamp(8px,0.78vw,15px);border-radius:2px;background:var(--rule);margin-bottom:clamp(24px,1.7vw,33px)"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(24px,3.13vw,60px);align-items:start">
+    <h2 style="margin:0;font-weight:700;font-size:clamp(28px,calc(13.14px + 1.451vw),41px);line-height:0.96">Send a Message</h2>
+    <p style="margin:0;font-family:'TT Rationalist Trl',Georgia,serif;font-weight:450;font-size:clamp(30px,calc(26.6px + 0.906vw),44px);line-height:1.1;letter-spacing:-0.02em;text-wrap:pretty">Tell us about your inquiry, partnership idea, or press request.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(24px,3.13vw,60px);margin-top:clamp(40px,5vw,96px)">
+    <div></div>
+    <form onSubmit="{{ onSubmit }}" style="max-width:910px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label for="cf-name" style="font-weight:450;font-size:12px;line-height:1;letter-spacing:0.094em;text-transform:uppercase">Name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" style="font-family:'Neue Haas Grotesk Display Std',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.2;padding:14px 16px;min-height:54px;border:1px solid var(--neutral-02);border-radius:2px;background:#FFFFFF;color:#000000;outline:none;transition:border-color 140ms cubic-bezier(.2,.6,.2,1)" style-focus="border-color:var(--redi-red)">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label for="cf-email" style="font-weight:450;font-size:12px;line-height:1;letter-spacing:0.094em;text-transform:uppercase">Email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" style="font-family:'Neue Haas Grotesk Display Std',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.2;padding:14px 16px;min-height:54px;border:1px solid var(--neutral-02);border-radius:2px;background:#FFFFFF;color:#000000;outline:none;transition:border-color 140ms cubic-bezier(.2,.6,.2,1)" style-focus="border-color:var(--redi-red)">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label for="cf-subject" style="font-weight:450;font-size:12px;line-height:1;letter-spacing:0.094em;text-transform:uppercase">Subject</label>
+        <input id="cf-subject" name="subject" type="text" style="font-family:'Neue Haas Grotesk Display Std',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.2;padding:14px 16px;min-height:54px;border:1px solid var(--neutral-02);border-radius:2px;background:#FFFFFF;color:#000000;outline:none;transition:border-color 140ms cubic-bezier(.2,.6,.2,1)" style-focus="border-color:var(--redi-red)">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label for="cf-message" style="font-weight:450;font-size:12px;line-height:1;letter-spacing:0.094em;text-transform:uppercase">Message</label>
+        <textarea id="cf-message" name="message" style="font-family:'Neue Haas Grotesk Display Std',Helvetica,Arial,sans-serif;font-size:18px;line-height:1.2;padding:14px 16px;min-height:160px;resize:vertical;border:1px solid var(--neutral-02);border-radius:2px;background:#FFFFFF;color:#000000;outline:none;transition:border-color 140ms cubic-bezier(.2,.6,.2,1)" style-focus="border-color:var(--redi-red)"></textarea>
+      </div>
+      <button type="submit" style="width:100%;max-width:255px;min-height:42px;padding:14px 24px;border:0;border-radius:2px;background:var(--neutral-01);color:#000000;font-weight:700;font-size:clamp(12px,calc(9.71px + 0.223vw),14px);line-height:0.96;letter-spacing:0.094em;text-transform:uppercase;cursor:pointer;transition:background 220ms cubic-bezier(.2,.6,.2,1),color 220ms cubic-bezier(.2,.6,.2,1)" style-hover="background:#000000;color:var(--neutral-01)">Send Message</button>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:16px 0 0;font-family:'TT Rationalist Trl',Georgia,serif;font-weight:700;font-size:24px;letter-spacing:-0.01em;color:var(--redi-red)">Thank you — we’ll be in touch.</p>
+      </sc-if>
+    </form>
+  </div>
+  </div>
+</section>
+
+<footer data-screen-label="Footer" style="position:relative;overflow:hidden;background:var(--neutral-01);padding:clamp(20px,3.13vw,60px) clamp(16px,3.13vw,60px);min-height:clamp(320px,27.7vw,532px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,3.13vw,60px);align-items:stretch">
+  <div style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(48px,6vw,120px)">
+    <p style="margin:0;font-family:'TT Rationalist Trl',Georgia,serif;font-weight:700;font-size:clamp(20px,calc(8.57px + 1.116vw),30px);line-height:1;letter-spacing:-0.01em">Ratner Early Detection Initiative</p>
+    <nav style="display:flex;align-items:flex-start;gap:40px">
+      <a href="index.html" style="display:inline-block;font-family:'Neue Haas Grotesk Display Std',Helvetica,Arial,sans-serif;font-weight:450;font-size:19px;line-height:0.97;letter-spacing:0.01em;color:#000000;border-bottom:3px solid transparent;padding-bottom:1px" style-hover="border-bottom-color:var(--redi-red)">info</a>
+      <a href="contact.html" style="display:inline-block;font-family:'Neue Haas Grotesk Display Std',Helvetica,Arial,sans-serif;font-weight:450;font-size:19px;line-height:0.97;letter-spacing:0.01em;color:#000000;border-bottom:3px solid transparent;padding-bottom:1px" style-hover="border-bottom-color:var(--redi-red)">contact</a>
+    </nav>
+  </div>
+  <div style="align-self:center;justify-self:end;width:100%;max-width:925px">
+    <x-import component-from-global-scope="REDIDesignSystem_ac846f.Logo" tone="#CED7D7" width="{{ footerMarkWidth }}" hint-size="100%,440px"></x-import>
+  </div>
+</footer>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <aside data-screen-label="Mobile menu" style="position:fixed;top:0;right:0;bottom:0;left:0;z-index:100;background:#FFFFFF;padding:20px;overflow:auto">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;margin-bottom:80px">
+      <button type="button" aria-label="Close menu" onClick="{{ closeMenu }}" style="position:relative;width:38px;height:38px;padding:0;border:0;background:none;cursor:pointer">
+        <span style="position:absolute;left:3px;top:50%;width:32px;height:5px;background:#000000;transform:translateY(-50%) rotate(45deg)"></span>
+        <span style="position:absolute;left:3px;top:50%;width:32px;height:5px;background:#000000;transform:translateY(-50%) rotate(-45deg)"></span>
+      </button>
+      <a href="index.html" aria-label="REDI — Home" style="justify-self:center">
+        <x-import component-from-global-scope="REDIDesignSystem_ac846f.Logo" tone="#FF0013" width="{{ 120 }}" hint-size="120px,60px"></x-import>
+      </a>
+      <span></span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:24px;padding-top:48px;text-align:center">
+      <a href="index.html" style="font-family:'TT Rationalist Trl',Georgia,serif;font-weight:700;font-size:48px;line-height:1.02;letter-spacing:-0.02em;color:#000000" style-hover="color:var(--redi-red)">info</a>
+      <a href="contact.html" style="font-family:'TT Rationalist Trl',Georgia,serif;font-weight:700;font-size:48px;line-height:1.02;letter-spacing:-0.02em;color:#000000;border-bottom:7px solid var(--redi-red);padding-bottom:6px">contact</a>
+    </div>
+  </aside>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;previewBreakpoint&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;showSuccessState&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:null,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Form&quot;}}">
+class Component extends DCLogic {
+  state = { w: 1920, menuOpen: false, sent: false };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onResize();
+    window.addEventListener("resize", this.onResize);
+  }
+  componentWillUnmount() { window.removeEventListener("resize", this.onResize); }
+
+  bp() {
+    const forced = this.props.previewBreakpoint;
+    if (forced && forced !== "auto") return forced;
+    if (this.state.w <= 600) return "mobile";
+    if (this.state.w <= 1024) return "tablet";
+    return "desktop";
+  }
+
+  renderVals() {
+    const bp = this.bp();
+    return {
+      isDesktop: bp === "desktop",
+      isCompact: bp !== "desktop",
+      logoWidth: bp === "mobile" ? 120 : bp === "tablet" ? 166 : 215.09,
+      footerMarkWidth: bp === "desktop" ? Math.max(360, Math.min(925, (this.state.w - 180) / 2)) : 585,
+      sent: this.props.showSuccessState ?? this.state.sent,
+      onSubmit: (e) => {
+        e.preventDefault();
+        this.setState({ sent: true });
+        e.target.reset();
+      },
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

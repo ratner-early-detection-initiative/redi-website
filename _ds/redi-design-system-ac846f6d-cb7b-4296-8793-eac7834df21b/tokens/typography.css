@@ -1,0 +1,69 @@
+/* REDI type system.
+   Two families, four cuts, transcribed from the Typography – Desktop / Tablet / Mobile
+   boards and cross-checked against the live page frames.
+
+   TT Rationalist  — editorial voice. Headlines, pull quotes, links, list items.
+   Neue Haas Grotesk Display — institutional voice. Section titles, body, buttons.
+
+   Where the board's stated line-height differs from the value on the actual text
+   node, the node wins (noted inline). */
+
+:root {
+  --font-display: "TT Rationalist Trl", "TT Rationalist Trial", Georgia, "Times New Roman", serif;
+  --font-grotesk: "Neue Haas Grotesk Display Std", "NeueHaasGroteskDisp W02", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-grotesk-bold: "NeueHaasGroteskDisp W02 Bd", "Neue Haas Grotesk Display Std", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-grotesk-light: "NeueHaasGroteskDisp W02 Lt", "Neue Haas Grotesk Display Std", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --weight-normal: 450; /* @kind font */  /* Rationalist "Normal" / Neue Haas "55 Roman" */
+  --weight-regular: 400; /* @kind font */ /* Rationalist "Regular" */
+  --weight-bold: 700; /* @kind font */
+
+  /* ---- Desktop scale (1920) ------------------------------------------- */
+  --h1-size: 95px;        --h1-lh: 1;/* @kind other */      --h1-ls: -0.02em;/* @kind other */   /* Rationalist Bold, sentence case */
+  --bignum-size: 140px;   --bignum-lh: 0.95;/* @kind other */ --bignum-ls: -0.03em;/* @kind other */ /* Neue Haas Light */
+  --h2-size: 41px;        --h2-lh: 0.96;/* @kind other */   --h2-ls: 0;/* @kind other */         /* Neue Haas Bold, title case */
+  --h3-size: 30px;        --h3-lh: 1;/* @kind other */      --h3-ls: 0;/* @kind other */         /* Neue Haas Bold, title case */
+  --sub1-size: 44px;      --sub1-lh: 1.1;/* @kind other */  --sub1-ls: -0.02em;/* @kind other */ /* Rationalist Normal */
+  --sub2-size: 28px;      --sub2-lh: 0.95;/* @kind other */ --sub2-ls: -0.02em;/* @kind other */ /* Rationalist Bold */
+  --list-size: 30px;      --list-lh: 1;/* @kind other */    --list-ls: 0;/* @kind other */       /* Rationalist Normal, capitalised */
+  --link-size: 19px;      --link-lh: 0.97;/* @kind other */ --link-ls: -0.01em;/* @kind other */ /* Rationalist Bold; board says 105% */
+  --p1-size: 24px;        --p1-lh: 1.15;/* @kind other */   --p1-ls: 0.01em;/* @kind other */    /* Neue Haas Roman */
+  --p2-size: 14px;        --p2-lh: 1.1;/* @kind other */    --p2-ls: 0.01em;/* @kind other */    /* Neue Haas Roman, capitalised */
+  --btn-size: 14px;       --btn-lh: 0.96;/* @kind other */  --btn-ls: 0.03em;/* @kind other */   /* Neue Haas Bold, UPPERCASE */
+  --eyebrow-size: 12px;   --eyebrow-lh: 1;/* @kind other */ --eyebrow-ls: 1.124px;/* @kind other */ /* Neue Haas Roman, UPPERCASE */
+
+  /* ---- Tablet scale (1024) -------------------------------------------- */
+  --h1-size-tablet: 68px;     --h1-lh-tablet: 0.94;/* @kind other */
+  --bignum-size-tablet: 105px;
+  --h2-size-tablet: 28px;     --h2-lh-tablet: 0.96;/* @kind other */
+  --h3-size-tablet: 20px;     --h3-lh-tablet: 1.1;/* @kind other */
+  --sub2-size-tablet: 24px;   --sub2-lh-tablet: 0.97;/* @kind other */
+  --link-size-tablet: 12px;   --link-lh-tablet: 1.05;/* @kind other */
+  --btn-size-tablet: 12px;    --btn-lh-tablet: 0.96;/* @kind other */
+
+  /* ---- Mobile scale (375) --------------------------------------------- */
+  --h1-size-mobile: 48px;     --h1-lh-mobile: 0.94;/* @kind other */
+  --bignum-size-mobile: 105px;
+  --h2-size-mobile: 28px;     --h2-lh-mobile: 0.96;/* @kind other */
+  --h3-size-mobile: 20px;     --h3-lh-mobile: 1.1;/* @kind other */
+  --sub1-size-mobile: 30px;   --sub1-lh-mobile: 1;/* @kind other */
+  --sub2-size-mobile: 28px;   --sub2-lh-mobile: 0.97;/* @kind other */
+  --link-size-mobile: 12px;   --link-lh-mobile: 1.05;/* @kind other */
+  --p1-size-mobile: 16px;     --p1-lh-mobile: 1.1;/* @kind other */
+  --p2-size-mobile: 14px;     --p2-lh-mobile: 1;/* @kind other */
+  --btn-size-mobile: 12px;    --btn-lh-mobile: 0.96;/* @kind other */
+}
+
+/* Ready-made classes. Every value above is also reachable as a variable. */
+.redi-h1{font-family:var(--font-display);font-weight:var(--weight-bold);font-size:var(--h1-size);line-height:var(--h1-lh);letter-spacing:var(--h1-ls);color:var(--text-primary);margin:0}
+.redi-bignum{font-family:var(--font-grotesk-light);font-weight:var(--weight-normal);font-size:var(--bignum-size);line-height:var(--bignum-lh);letter-spacing:var(--bignum-ls);margin:0}
+.redi-h2{font-family:var(--font-grotesk-bold);font-weight:var(--weight-bold);font-size:var(--h2-size);line-height:var(--h2-lh);margin:0}
+.redi-h3{font-family:var(--font-grotesk-bold);font-weight:var(--weight-bold);font-size:var(--h3-size);line-height:var(--h3-lh);margin:0}
+.redi-sub1{font-family:var(--font-display);font-weight:var(--weight-normal);font-size:var(--sub1-size);line-height:var(--sub1-lh);letter-spacing:var(--sub1-ls);margin:0}
+.redi-sub2{font-family:var(--font-display);font-weight:var(--weight-bold);font-size:var(--sub2-size);line-height:var(--sub2-lh);letter-spacing:var(--sub2-ls);margin:0}
+.redi-list{font-family:var(--font-display);font-weight:var(--weight-normal);font-size:var(--list-size);line-height:var(--list-lh);text-transform:capitalize;margin:0}
+.redi-link{font-family:var(--font-display);font-weight:var(--weight-bold);font-size:var(--link-size);line-height:var(--link-lh);letter-spacing:var(--link-ls)}
+.redi-p1{font-family:var(--font-grotesk);font-weight:var(--weight-normal);font-size:var(--p1-size);line-height:var(--p1-lh);letter-spacing:var(--p1-ls);margin:0}
+.redi-p2{font-family:var(--font-grotesk);font-weight:var(--weight-normal);font-size:var(--p2-size);line-height:var(--p2-lh);letter-spacing:var(--p2-ls);text-transform:capitalize;margin:0}
+.redi-btn-label{font-family:var(--font-grotesk-bold);font-weight:var(--weight-bold);font-size:var(--btn-size);line-height:var(--btn-lh);letter-spacing:var(--btn-ls);text-transform:uppercase}
+.redi-eyebrow{font-family:var(--font-grotesk);font-weight:var(--weight-normal);font-size:var(--eyebrow-size);line-height:var(--eyebrow-lh);letter-spacing:var(--eyebrow-ls);text-transform:uppercase}
